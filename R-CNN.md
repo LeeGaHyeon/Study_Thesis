@@ -4,13 +4,13 @@ R-CNN
 - 목표 : 이미지를 넣었을 때, 해당 이미지에 어떤 물체들이(classification) 어디에 있는지(localization) 알아내는 것.
 - 기존 object detection보다 simple하고 scalable(확장가능한) 알고리즘
 
-목차
+## 목차
 - 배경지식
 - Key insights
 - R-CNN
 - 결과
 
-배경지식
+## 배경지식
 
 Segmantic Segmentation : 각각의 사물의 종류에만 집중하고 개체에는 관심이 없음. 
 
@@ -35,7 +35,7 @@ Key insights
 - label이 지정된 training data가 부족할 때, 보조작업에 대한 supervised pre-training & domain-specific fine-tuning -> 성능향상
 - CNN으로 object detection을 잘 구현해 낸 첫 사례 
 
-R-CNN : Regions with CNN features
+## R-CNN : Regions with CNN features
 1. Input image
 2. Extract region proposal(~2k)
 3. Compute CNN features
