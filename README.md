@@ -1,1 +1,1 @@
-# Study_thesis
+# thesis study
