@@ -13,15 +13,20 @@ R-CNN
 배경지식
 
 Segmantic Segmentation : 각각의 사물의 종류에만 집중하고 개체에는 관심이 없음. 
+
 Object detection : classification +localization (bounding box 찾아내기)
+
 region proposal : Seletive Search
 초기 후보 영역을 다양한 크기와 비율로 생성
 모든 영역에 대해 유사도 계산
 유사한 영역과 근접한 pixel을 merge, grouping 해나감
+
 Bottom-up
+
 Object detection
 - SIFT (Scale-Invariant feature transform) : 이미지의 크기, 회전 변환에도 영향을 받지 않고 비슷한 특징끼리 매칭을 해줌.
 - HOG : 각 셀마다 EDGE 픽셀들의 방향에 대한 히스토그램 
+
 PASCAL VOC : 5가지 영상 인식 task를 위한 opensource dataset
 (classification, detection, segmentation, action, classification, large scale, recognition)
 
@@ -32,9 +37,14 @@ Key insights
 
 R-CNN : Regions with CNN features
 1. Input image
+2. Extract region proposal(~2k)
+3. Compute CNN features
+4. Classify regions
+
+2. region proposal
   1) 이미지 안에서 selective search 알고리즘을 사용해 2000개의 bounding box를 만들어 잘라냄
   2) 잘려진 2000개의 이미지는 사이즈가 다 다르기 때문에, cnn의 input 사이즈를 맞추기위해 wrap과정(resize 227x227)을 거침
-3. Extract region proposals(~2k)
+3. pre-trained cnn & fine-tuning
   - ILSVRC2012에 대해 CNN pre-training(AlexNet)
     : warp된 이미지를 각각 cnn에 넣어 feature vetor를 추출
   - domain-specific fine-tuning
