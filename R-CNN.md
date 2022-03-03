@@ -19,7 +19,7 @@ Object detection : classification +localization (bounding box 찾아내기)
 region proposal : Seletive Search
 초기 후보 영역을 다양한 크기와 비율로 생성
 모든 영역에 대해 유사도 계산
-유사한 영역과 근접한 pixel을 merge, grouping 해나감
+유사한 영역과 근접한 pixel을 merge, grouping 해나감->결합되어 커진 region을 최종 region proposal로 결정.
 
 Bottom-up
 
@@ -54,6 +54,15 @@ Key insights
   - Greedy non-maximum suppression
   - 각각의 박스들은 확률값 가지게 됨. 이때 2천개의 박스 중 가장 스코어가 높은 박스만 남기고 나머지 제거(0.5 기준)
 
-3,4 오류분석 : selective search만 사용하니까 localization 성능이 좋지 않음./bounding box regression
+3,4 오류분석 : selective search만 사용하니까 localization 성능이 좋지 않음./=> 이 오류를 줄일 수 있는 방법 == bounding box regression
 
 5. bounding box regression : 예측된 bounding box의 원래좌표(ground truth)와 비교하여 regression
+
+## conclusion
++ object를 localize하고 분할하기위해 상향식 regiion proposal에 CNN적용
++ 훈련데이터가 부족할 경우 pre-training이후 fine-tuning이용
+
+성능향상시키는 3가지 방법
+1. region proposal에 대한 CNN학습
+2. SVM classification
+3. Bounding box regression
