@@ -45,4 +45,5 @@ R-CNN : Regions with CNN features
   - 각각의 박스들은 확률값 가지게 됨. 이때 2천개의 박스 중 가장 스코어가 높은 박스만 남기고 나머지 제거(0.5 기준)
 
 3,4 오류분석 : selective search만 사용하니까 localization 성능이 좋지 않음./bounding box regression
+
 5. bounding box regression : 예측된 bounding box의 원래좌표(ground truth)와 비교하여 regression
