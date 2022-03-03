@@ -32,6 +32,17 @@ Key insights
 
 R-CNN : Regions with CNN features
 1. Input image
-2. Extract region proposals(~2k)
-3. Compute CNN features
-4. Classify regions
+  1) 이미지 안에서 selective search 알고리즘을 사용해 2000개의 bounding box를 만들어 잘라냄
+  2) 잘려진 2000개의 이미지는 사이즈가 다 다르기 때문에, cnn의 input 사이즈를 맞추기위해 wrap과정(resize 227x227)을 거침
+3. Extract region proposals(~2k)
+  - ILSVRC2012에 대해 CNN pre-training(AlexNet)
+    : warp된 이미지를 각각 cnn에 넣어 feature vetor를 추출
+  - domain-specific fine-tuning
+    : pre-trained model에 Pascal VOC dataset으로 조금만 학습
+4. SVM 
+  - Cnn의 softmax에 들어가기 바로 전 feature(fixed-length feature vector)를 svm에 넣어 classification
+  - Greedy non-maximum suppression
+  - 각각의 박스들은 확률값 가지게 됨. 이때 2천개의 박스 중 가장 스코어가 높은 박스만 남기고 나머지 제거(0.5 기준)
+
+3,4 오류분석 : selective search만 사용하니까 localization 성능이 좋지 않음./bounding box regression
+5. bounding box regression : 예측된 bounding box의 원래좌표(ground truth)와 비교하여 regression
